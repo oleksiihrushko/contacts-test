@@ -26,3 +26,6 @@ yarn-debug.log*
 yarn-error.log*
 
 bash.exe.stackdump
+
+# Local Netlify folder
+.netlify
