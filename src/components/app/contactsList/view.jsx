@@ -1,41 +1,13 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { List, Card, Table } from "antd";
+import { List, Table } from "antd";
 import Paragraph from "antd/lib/typography/Paragraph";
 import { NATIONALITIES } from "constants/nationalities";
-import {
-	red,
-	volcano,
-	gold,
-	yellow,
-	lime,
-	green,
-	cyan,
-	blue,
-	geekblue,
-	purple,
-	magenta,
-	grey,
-	orange,
-} from "@ant-design/colors";
+import * as colors from "@ant-design/colors";
 
 import "./style.scss";
-
-const colors = {
-	red,
-	volcano,
-	gold,
-	yellow,
-	lime,
-	green,
-	cyan,
-	blue,
-	geekblue,
-	purple,
-	magenta,
-	grey,
-	orange,
-};
+import ContactsFooter from "./ContactsFooter";
+import ContactCard from "./ContactCard";
 
 const View = ({ contacts }) => {
 	const [fooKey, setFooKey] = useState(true);
@@ -62,7 +34,9 @@ const View = ({ contacts }) => {
 			dataIndex: ["name", "title"],
 			sorter: (a, b) => a.name.first.localeCompare(b.name.first),
 			render: (text, row) => (
-				<span>{text + " " + row.name.first + " " + row.name.last}</span>
+				<span>
+					{text + ". " + row.name.first + " " + row.name.last}
+				</span>
 			),
 		},
 		{
@@ -180,24 +154,32 @@ const View = ({ contacts }) => {
 	];
 
 	return (
-		<div className="contacts__wrapper">
+		<div className="contacts">
 			{view === "table" && (
 				<Table
 					key={fooKey}
 					dataSource={contacts}
+					pagination={{
+						pageSize: 10,
+					}}
 					rowKey="email"
 					columns={columns}
 					scroll={{ x: 1300 }}
+					footer={() => <ContactsFooter contacts={contacts} />}
 				/>
 			)}
 			{view === "list" && (
 				<List
 					key={!fooKey}
 					grid={{ gutter: 16, column: 3 }}
+					pagination={{
+						pageSize: 6,
+					}}
 					dataSource={contacts}
+					footer={<ContactsFooter contacts={contacts} />}
 					renderItem={(item) => (
 						<List.Item>
-							<Card title={item.email}>Card content</Card>
+							<ContactCard contact={item} />
 						</List.Item>
 					)}
 				/>

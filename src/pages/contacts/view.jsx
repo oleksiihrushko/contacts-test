@@ -29,8 +29,6 @@ const View = () => {
 
 	const contacts = useSelector((state) => state.app.contacts);
 
-	console.log(contacts);
-
 	const [filtredContacts, setFiltredContacts] = useState(contacts);
 
 	useEffect(() => {
@@ -99,8 +97,6 @@ const View = () => {
 			</Option>
 		);
 	}
-
-	console.log("savedView :>> ", savedView);
 
 	return (
 		<>
