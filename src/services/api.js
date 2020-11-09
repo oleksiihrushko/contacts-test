@@ -1,7 +1,7 @@
 import axios from "axios";
 import { randomIntegerInRange } from "utils";
 
-const collectionSize = randomIntegerInRange(20, 30);
+const collectionSize = randomIntegerInRange(60, 100);
 
 export const getContacts = async () => {
 	return axios(`https://randomuser.me/api/?results=${collectionSize}`).then(

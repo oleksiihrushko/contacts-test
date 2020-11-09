@@ -14,9 +14,7 @@ function* fetchContactsWorker() {
 	try {
 		const contacts = yield call(getContacts);
 		yield put(fetchContactsSuccess(contacts));
-		console.log(contacts);
 	} catch (err) {
-		console.log(err);
 		yield put(fetchContactsError(err));
 	}
 }
